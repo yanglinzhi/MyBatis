@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.ylz.mapper.CourseMapper">
+
+    <select id="selectAll" resultType="com.ylz.pojo.Course">
+        select * from course;
+    </select>
+    <!--
+        * 参数占位符
+            1.#{}:会将其替换为?,为防止sql注入;
+            2.${}:拼sql,会存在sql注入问题;
+            3.使用时间:
+                *参数传递的时候: #{};
+                *表明/列名不固定的时候:${};有sql注入问题
+
+    -->
+    <select id="selectById" resultType="com.ylz.pojo.Course">
+        select * from course where c_id = #{id};
+    </select>
+</mapper>
