@@ -7,8 +7,10 @@
 -->
 <mapper namespace="com.ylz.mapper.CourseMapper">
 
+
     <select id="selectAll" resultType="com.ylz.pojo.Course">
-        select * from course;
+        select *
+        from course;
     </select>
     <!--
         * 参数占位符
@@ -20,6 +22,50 @@
 
     -->
     <select id="selectById" resultType="com.ylz.pojo.Course">
-        select * from course where c_id = #{id};
+        select *
+        from course
+        where c_id = #{id};
     </select>
+    <!--条件查询-->
+    <!--    <select id="selectByCondition" resultType="com.ylz.pojo.Course">-->
+    <!--        select  * from course where c_name like #{c_name} and c_teacher like #{c_teacher}-->
+    <!--    </select>-->
+    <!--动态条件查询-->
+    <select id="selectByCondition" resultType="com.ylz.pojo.Course">
+        select *
+        from course
+        <where>
+            <if test="c_name != null and c_name!=''">
+                and c_name like #{c_name}
+            </if>
+            <if test="c_teacher != null and c_teacher!=''">
+                and c_teacher like #{c_teacher}
+            </if>
+        </where>
+    </select>
+    <insert id="add" useGeneratedKeys="true" keyProperty="c_id">
+        insert into course(c_name, c_teacher)
+        VALUES (#{c_name}, #{c_teacher});
+    </insert>
+    <update id="update">
+        update course
+
+        <set>
+            <if test="c_name!=null and c_name!=''">c_name = #{c_name},</if>
+            <if test="c_teacher!=null and c_teacher!=''">c_teacher = #{c_teacher}</if>
+        </set>
+        where c_id = #{c_id}
+    </update>
+    <delete id="deleteById">
+        delete
+        from course
+        where c_id = #{c_id};
+    </delete>
+
+    <delete id="deleteByIds">
+        delete from course where c_id in
+        <foreach collection="array" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

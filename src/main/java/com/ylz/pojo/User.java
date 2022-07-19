@@ -27,6 +27,7 @@ public class User {
     public void setU_isdelete(Integer u_isdelete) {
         this.u_isdelete = u_isdelete;
     }
+
     public String getU_pwd() {
         return u_pwd;
     }

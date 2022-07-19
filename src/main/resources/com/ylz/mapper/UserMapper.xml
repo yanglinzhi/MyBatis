@@ -7,9 +7,12 @@
 -->
 <mapper namespace="com.ylz.mapper.UserMapper">
     <select id="selectAll" resultType="com.ylz.pojo.User">
-        select * from user;
+        select *
+        from user;
     </select>
     <select id="selectById" resultType="com.ylz.pojo.User">
-        select * from user where u_id = #{id};
+        select *
+        from user
+        where u_id = #{id};
     </select>
 </mapper>
