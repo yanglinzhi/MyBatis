@@ -8,7 +8,7 @@
 <mapper namespace="com.ylz.mapper.CourseMapper">
 
 
-    <select id="selectAll" resultType="com.ylz.pojo.Course">
+    <select id="selectAll" resultType="course">
         select *
         from course;
     </select>
